@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: MyString
+  firstName: MyString
+  lastName: MyString
+  DOB: 2017-12-24
+  gender: MyString
+  twitter: MyString
+  chamber: MyString
+  title: MyString
+  state: MyString
+  party: MyString
+  nextElection: 1
+  votesWithParty: 9.99
+
+two:
+  id: MyString
+  firstName: MyString
+  lastName: MyString
+  DOB: 2017-12-24
+  gender: MyString
+  twitter: MyString
+  chamber: MyString
+  title: MyString
+  state: MyString
+  party: MyString
+  nextElection: 1
+  votesWithParty: 9.99

@@ -1,0 +1,36 @@
+=render 'navbar'
+
+%div.search
+    %form
+        %input.searchbox{:type => "text", :placeholder => "Search for a member..."}
+        %input{:type => "submit", class:"btn btn-submit"}
+        
+%div.mainHeader 
+    // %img(src="//upload.wikimedia.org/wikipedia/commons/thumb/5/59/Cory_Booker%2C_official_portrait%2C_114th_Congress.jpg/220px-Cory_Booker%2C_official_portrait%2C_114th_Congress.jpg")
+
+    %h1 Current Senators 
+    %h4 
+
+%table
+    %tr 
+         
+        %th
+        %th.name Name
+        %th.nextElection Next Election 
+        %th.votes Votes with Party(%)
+                
+    
+    -@govtOfficials.each do |member|
+                
+        %tr
+        
+        %td.image
+            %img(src="#{member.image_string}")
+
+        %td
+            =link_to member.firstName + " " + member.lastName, govt_official_path(member.id)
+            %br
+            .description
+                =member.state
+        %td=member.nextElection
+        %td=member.votesWithParty

@@ -1,0 +1,31 @@
+=render 'navbar'
+
+
+// %h1.mainHeader View House Members
+// %button.info Compare Members
+
+
+%table
+    %tr
+        %th Party
+        %th.name Name
+        %th.nextElection Next Election 
+        %th.votes Votes with Party(%)
+                
+    
+    //should probably add more columns to these tables 
+    -@govtOfficials.each do |member|
+                
+        %tr
+        -if member.chamber == "house"
+            -if member.party == "R"
+                %td.party.rep=member.party
+            -else 
+                %td.party.dem=member.party
+            %td.name
+                =link_to member.firstName + " " + member.lastName, govt_official_path(member.id)
+                %br
+                .description
+                    =member.state
+            %td.nextElection=member.nextElection
+            %td.vots=member.votesWithParty

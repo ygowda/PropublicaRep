@@ -1,0 +1,91 @@
+// Place all the styles related to the chambers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.search{
+    text-align: right;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    
+    .searchbox{
+        border-radius: 5px;
+    }
+}
+
+.mainHeader{
+    text-align: center;  
+    // why is display inline not having any effect?
+    display: inline;
+}
+
+
+.party{
+    width: 3%;
+    text-align: center;
+    border-radius: 50%;
+    // why isn't nesting working here w/o &????
+    &.dem{
+        background: #469BF0;
+    }
+    &.rep{
+        background: #E8411C;
+    }
+    
+}
+
+.nav-buttons{
+    font-size: 30px;
+    display: inline;
+    
+    .nav{
+        // margin-left: 100px   
+    }
+}
+
+table{
+    margin-left: 15%;
+    width: 70%;
+    border-spacing: 0;
+    overflow: auto;
+}
+
+
+
+td{
+    border-bottom: 0.5px solid #B9CED6;
+    // width: 1.0rem;
+    margin-left: 10px;
+    height: 100px;
+    &.image{
+        width: 100px;
+    }
+}
+
+th{
+   border-bottom: 1.0px solid black; 
+//   text-align: center;
+  &.thumbnail{
+    
+  }
+  &.name{
+      text-align: center;
+  }
+  &.nextElection{
+      text-align: center;
+  }
+  &.votes{
+      text-align: center;
+  }
+}
+
+tr{
+    text-align: center;
+    
+    .description::before{
+        width:1px;
+        height:1px;
+        background: blue;
+    }
+}
+
