@@ -20,9 +20,6 @@ class ChambersController < ApplicationController
         require 'rubygems'
         require 'open-uri'
         require 'net/http'
-        # require 'rubygems'
-        require 'nokogiri'
-        # require 'open-uri'
 
         headers = {"X-API-Key" =>"7mzlBEbqun6gjkmVmGMHK9ScX0z4O2NTQk066Zmc"}
 
@@ -80,8 +77,7 @@ class ChambersController < ApplicationController
         wiki_final_url = wiki_base_url + name
         
         begin 
-            puts "the final url is " +wiki_final_url
-            
+        
             # may end up missing some members. There might be a better way to do this...
             web_page = Nokogiri::HTML(open(wiki_final_url))
             infobox = web_page.at_css('table.infobox')
@@ -90,12 +86,10 @@ class ChambersController < ApplicationController
             td.each do |node|
                 if node.at_css('img')
                     image_url = node.css('img').attr('src')
-                    puts node.css('img').attr('src')
                     break
                 end
 
             end
-            puts '**************************'
 
         rescue
             puts "did not find a web page"

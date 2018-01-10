@@ -12,7 +12,7 @@
     %h4 
 
 %table
-    %tr 
+    %tr.tableHeader
          
         %th
         %th.name Name
@@ -24,13 +24,16 @@
                 
         %tr
         
-        %td.image
-            %img(src="#{member.image_string}")
+        %td
+            %div.image
+                %img(src="#{member.image_string}")
 
         %td
-            =link_to member.firstName + " " + member.lastName, govt_official_path(member.id)
-            %br
-            .description
-                =member.state
+            %div.memberInfo
+                %div{class: renderPartyColor(member.party)}
+                =link_to member.firstName + " " + member.lastName, govt_official_path(member.id)
+                %br
+                .description
+                    ="#{member.party} - #{member.state}"
         %td=member.nextElection
         %td=member.votesWithParty
