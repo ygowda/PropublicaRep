@@ -3,8 +3,10 @@ module ChambersHelper
     def renderPartyColor(party)
         if party == "R"
             "party rep"
-        else
+        elsif party == "D"
             "party dem"
+        else 
+            "party ind"
         end
     end
 end

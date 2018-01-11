@@ -2,96 +2,70 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// .search{
-//     text-align: right;
-//     padding-right: 20px;
-//     padding-bottom: 20px;
-// }
+.header{
+    padding-top: 30px;
+    h3, h4{
+        padding-right: 20px;
+        display: inline;
+    }
+}
 
-// .mainHeader{
-//     text-align: center;  
-//     animation: fade-in 1.5s
-// }
 
-// .party{
-//     width: 3%;
-//     text-align: center;
-//     border-radius: 50%;
-//     // why isn't nesting working here w/o &????
-//     &.dem{
-//         background: #469BF0;
-//     }
-//     &.rep{
-//         background: #E8411C;
-//     }
+.currentYear{
+    background: #3ee059;
+    color: #fff;
+}
+.laterYear{
+    background: #db2929;
+    color: #fff;
+}   
+
+
+
+
+.memberCard{
+    float: left;
+    margin-right: 30px;
+    width: 250px;
     
-// }
+    .memberImage{
+        width: 250px;
+        height: 350px;
+    }
+    .memberInfo{
+        text-align: left;
+        box-sizing: border-box;
 
-// .nav-buttons{
-//     font-size: 20px;
-//     // &:active{
-//     //     background: green;
-//     // }
-// }
+        ul{
+            margin: 0;
+            border-style: solid;
+            border-width: 0.5px;
+            width: 250px;
+            background: #d0d3d8;
+        }
+    }
+}
 
-// table{
-//     margin-left: 15%;
-//     width: 70%;
-//     border-spacing: 0;
-//     overflow: auto;
-// }
+.memberStats{
+    display: block;
+}
 
+.memberStatsIntro{
+    padding-top: 15px;
+    margin-bottom: 15%;
+   
+}
 
+.horizontalList{
+    list-style-type: none;
+    li{
+        display: inline; 
+        margin-right: 220px;
+    }
 
-// td{
-//     border-bottom: 0.5px solid #B9CED6;
-//     width: 1.0rem;
-//     margin-left: 10px;
-//     animation: fade-in 4s;
-// }
-
-// th{
-//   border-bottom: 1.0px solid black; 
-//   animation: fade-in 4s;
-//   &.name{
-//       text-align: center;
-//   }
-//   &.state{
-//       text-align: center;
-//   }
-//   &.nextElection{
-//       text-align: center;
-//   }
-//   &.votes{
-//       text-align: center;
-//   }
-// }
-
-// tr{
-//     animation: fade-in 2s;
-//     text-align: center;
-//       &.name{
-//       text-align: center;
-//   }
-//   &.state{
-//       text-align: center;
-//   }
-//   &.nextElection{
-//       text-align: center;
-//   }
-//   &.votes{
-//       text-align: center;
-//   }
-// }
-
-// @keyframes fade-in{
-//     0%{
-//         opacity: 0;
-//     }
-//     100%{
-//         opacity: 1;
-//     }
-// }
-
-
-
+}
+.plus{
+    li{
+        margin-right: 200px;    
+    }
+}

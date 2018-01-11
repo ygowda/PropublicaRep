@@ -1,6 +1,33 @@
-%h1 This is the index page for govt officials
 
-%p=@member.firstName
+%div.header
+    %h3= @member.firstName + " " +@member.lastName + ' (' + @member.party + ')'
+    %h4.electionYear{class: renderElectionYearColor(@member.nextElection)} Relection Year: #{@member.nextElection}
+
+%section.memberCard
+    %div
+        %img.memberImage(src="#{@member.image_string}")
+    %div.memberInfo
+        %ul Senator from the state of #{@member.state}
+        %ul= @member.DOB.strftime("%B %d, %Y")
+      
+        
+%div.memberStats   
+    %section.memberStatsIntro
+        %ul.horizontalList
+            %li votes with party 
+            %li missed votes
+            %li cosponsored bills
+            
+    %section.memberStatsPlus
+        %ul.horizontalList.plus
+            %li Statements
+            %li Bills
+            %li Votes
+            %li Twitter
+
+        
+
+// **make use of google news api to get up to date news articles on person
 
 
 =render 'recent_activity'
