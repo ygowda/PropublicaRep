@@ -53,19 +53,36 @@
 .memberStatsIntro{
     padding-top: 15px;
     margin-bottom: 15%;
-   
 }
+
 
 .horizontalList{
     list-style-type: none;
-    li{
-        display: inline; 
-        margin-right: 220px;
-    }
+        li{
+            display: inline; 
+            margin-right: 220px;
+        }
+}
 
-}
-.plus{
-    li{
-        margin-right: 200px;    
+.memberStatsRecent{
+    .recentHeading{
+        font-size: 30px;
+        font-weight: bold;
+        font-family: "Times New Roman";
+    }
+    
+    .filter{
+        line-height: 30px;
+        height: 40px;
+        color: #8694aa;
+        border-top: 0.5px solid;
+        border-bottom: 0.5px solid;
+    }
+    
+    .plus{
+        li{
+            margin-right: 200px;    
+        }
     }
 }
+
