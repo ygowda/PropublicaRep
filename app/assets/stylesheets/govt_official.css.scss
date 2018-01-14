@@ -21,8 +21,6 @@
 }   
 
 
-
-
 .memberCard{
     float: left;
     margin-right: 30px;
@@ -35,6 +33,7 @@
     .memberInfo{
         text-align: left;
         box-sizing: border-box;
+        float: left;
 
         ul{
             margin: 0;
@@ -86,3 +85,6 @@
     }
 }
 
+#activity{
+    
+}

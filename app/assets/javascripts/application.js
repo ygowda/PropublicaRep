@@ -19,12 +19,13 @@
 // console.log("hi!!!");
 
 $(document).ready(function(){
-    $("button.compareSenate").on("click", function(event){
-        console.log("yooooo!");
+    $("#statements").on("click", function(event){
+        console.log(event)
+        var recentActivity = $("#statements").attr("data-attribute");
+        console.log(recentActivity);
+        $('#activity').append(recentActivity);
     });
-    // $("button.comapreSenate").click(function(e){
-    //   console.log("yezzz"); 
-    // });
+    // console.log("hiiiiii");
 });
 
 

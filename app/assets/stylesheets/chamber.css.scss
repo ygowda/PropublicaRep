@@ -60,7 +60,7 @@ table{
 
 
 td{
-    border-bottom: 0.5px solid #B9CED6;
+    border: 0.5px solid #B9CED6;
     margin-left: 10px;
     height: 100px;
 }
@@ -75,10 +75,10 @@ td{
 }
 
 th{
-   border-bottom: 1.0px solid black; 
+   border: 0.5px solid #B9CED6; 
 //   text-align: center;
-  &.thumbnail{
-    
+  &.image{
+
   }
   &.name{
       text-align: center;
@@ -95,8 +95,8 @@ tr{
     text-align: center;
     
     .description::before{
-        width:1px;
-        height:1px;
+        width: 1px;
+        height: 1px;
         background: blue;
     }
 }

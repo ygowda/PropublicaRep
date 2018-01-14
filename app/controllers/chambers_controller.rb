@@ -77,12 +77,12 @@ class ChambersController < ApplicationController
         wiki_final_url = wiki_base_url + name
         
         begin 
-        
+
             # may end up missing some members. There might be a better way to do this...
             web_page = Nokogiri::HTML(open(wiki_final_url))
             infobox = web_page.at_css('table.infobox')
             td = infobox.css('td')
-        
+                
             td.each do |node|
                 if node.at_css('img')
                     image_url = node.css('img').attr('src')

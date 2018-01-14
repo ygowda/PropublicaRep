@@ -9,6 +9,7 @@
     %div.memberInfo
         %ul Senator from the state of #{@member.state}
         %ul= @member.DOB.strftime("%B %d, %Y")
+        %button.btn.btn-success Compare Senators
       
         
 %div.memberStats   
@@ -17,21 +18,12 @@
             %li Votes with Party 
             %li Missed Votes
             %li Cosponsored Bills
-            
-    %section.memberStatsRecent
-        %div.recentHeading
-            Recent Actvity
-        %div.filter
-            Filter
-        %ul.horizontalList.plus
-            %li Statements
-            %li Bills
-            %li Votes
-            %li Twitter
+    
+    =render 'recent_activity'        
+
 
         
 
 // **make use of google news api to get up to date news articles on person
 
 
-=render 'recent_activity'

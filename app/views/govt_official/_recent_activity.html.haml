@@ -1,1 +1,13 @@
 // %h1 Hi this is another form 
+%section.memberStatsRecent
+    %div.recentHeading
+        Recent Actvity
+    %div.filter
+        Filter
+    %ul.horizontalList.plus
+        %li#statements{data: {attribute: "=render 'recent_statements'"}} Statements
+        %li#bills Bills
+        %li#votes Votes
+        %li#twitter Twitter
+    
+    %section#activity
