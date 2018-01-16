@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  action_id: 1
+  chamber: 1
+  action_type: MyString
+  date: 2018-01-14 03:58:27
+  description: MyString
+
+two:
+  action_id: 1
+  chamber: 1
+  action_type: MyString
+  date: 2018-01-14 03:58:27
+  description: MyString

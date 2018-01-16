@@ -4,10 +4,10 @@
         Recent Actvity
     %div.filter
         Filter
-    %ul.horizontalList.plus
-        %li#statements{data: {attribute: "=render 'recent_statements'"}} Statements
+    %ul.horizontalList.plus{data: { id: @member.id}}
+        %li#statements Statements
         %li#bills Bills
         %li#votes Votes
         %li#twitter Twitter
     
-    %section#activity
+    %section#activity  

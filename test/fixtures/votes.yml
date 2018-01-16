@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2018-01-14
+  roll_call: 1
+  question: MyString
+  result: MyString
+  total_yes: 1
+  total_no: 1
+  total_not_voting: 1
+
+two:
+  date: 2018-01-14
+  roll_call: 1
+  question: MyString
+  result: MyString
+  total_yes: 1
+  total_no: 1
+  total_not_voting: 1

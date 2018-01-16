@@ -46,7 +46,6 @@ class ChambersController < ApplicationController
                 govtOfficial.initialize_by_api_data(member, chamber)
                 image_url = getImage(member['first_name'] + "_" + member['last_name'])
                 govtOfficial.add_image_url(image_url)
-                # "https://en.wikipedia.org/wiki/Cory_Booker"
                 govtOfficial.save  
             end
         

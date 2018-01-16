@@ -16,16 +16,15 @@
 //= require turbolinks
 //= require_tree .
 
-// console.log("hi!!!");
 
-$(document).ready(function(){
-    $("#statements").on("click", function(event){
-        console.log(event)
-        var recentActivity = $("#statements").attr("data-attribute");
-        console.log(recentActivity);
-        $('#activity').append(recentActivity);
-    });
-    // console.log("hiiiiii");
-});
+// $(document).ready(function(){
+//     $("#statements").on("click", function(event){
+//         console.log(event)
+//         var recentActivity = $("#statements").attr("data-attribute");
+//         console.log(recentActivity);
+//         $('#activity').append(recentActivity);
+//     });
+//     // console.log("hiiiiii");
+// });
 
 

@@ -11,7 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180109030246) do
+ActiveRecord::Schema.define(version: 20180114041508) do
+
+  create_table "actions", force: :cascade do |t|
+    t.integer  "action_id"
+    t.integer  "chamber"
+    t.string   "action_type"
+    t.date     "date"
+    t.string   "description"
+    t.integer  "bill_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "bills", force: :cascade do |t|
+    t.string   "bill_id"
+    t.string   "bill_slug"
+    t.string   "bill_number"
+    t.string   "title"
+    t.string   "short_title"
+    t.string   "sponsor_id"
+    t.string   "sponsor_party"
+    t.string   "sponsor_state"
+    t.date     "introduced_date"
+    t.text     "summary"
+    t.text     "short_summary"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "govt_officials", id: false, force: :cascade do |t|
     t.string   "member_id"
@@ -28,6 +55,18 @@ ActiveRecord::Schema.define(version: 20180109030246) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "image_string"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "roll_call"
+    t.string   "question"
+    t.string   "result"
+    t.integer  "total_yes"
+    t.integer  "total_no"
+    t.integer  "total_not_voting"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
 end

@@ -59,7 +59,13 @@ Rails.application.routes.draw do
     get 'house' => 'chambers#house'
   end
   
-  resources :govt_official  
+  namespace :api do
+    namespace :v1 do
+      resources :govt_official, only: [:show]
+    end
+  end
+  
+  resources :govt_official
     # member do 
     #   get 'index'
     # end

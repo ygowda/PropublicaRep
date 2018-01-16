@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bill_id: MyString
+  bill_slug: MyString
+  bill_number: MyString
+  title: MyString
+  short_title: MyString
+  sponsor_id: MyString
+  sponsor_party: MyString
+  sponsor: 
+  introduced_date: 2018-01-14 03:53:52
+  summary: MyText
+  short_summary: MyText
+
+two:
+  bill_id: MyString
+  bill_slug: MyString
+  bill_number: MyString
+  title: MyString
+  short_title: MyString
+  sponsor_id: MyString
+  sponsor_party: MyString
+  sponsor: 
+  introduced_date: 2018-01-14 03:53:52
+  summary: MyText
+  short_summary: MyText
