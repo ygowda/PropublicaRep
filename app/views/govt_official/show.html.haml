@@ -1,25 +1,27 @@
-
-%div.header
-    %h3= @member.firstName + " " +@member.lastName + ' (' + @member.party + ')'
-    %h4.electionYear{class: renderElectionYearColor(@member.nextElection)} Relection Year: #{@member.nextElection}
-
-%section.memberCard
-    %div
-        %img.memberImage(src="#{@member.image_string}")
-    %div.memberInfo
-        %ul Senator from the state of #{@member.state}
-        %ul= @member.DOB.strftime("%B %d, %Y")
-        %button.btn.btn-success Compare Senators
-      
-        
-%div.memberStats   
-    %section.memberStatsIntro
-        %ul.horizontalList
-            %li Votes with Party 
-            %li Missed Votes
-            %li Cosponsored Bills
+%section.personalInfo
+    %div.header
+        %h3= @member.firstName + " " +@member.lastName + ' (' + @member.party + ')'
     
-    =render 'recent_activity'        
+    %section.memberCard
+        %div
+            %img.memberImage(src="#{@member.image_string}")
+        %div.memberInfo
+            %ul Senator from the state of #{@member.state}
+            %ul= @member.DOB.strftime("%B %d, %Y")
+            %button.btn.btn-success#compareButton Compare Senators
+
+
+%section.legislativeInfo
+    %h4.electionYear{class: renderElectionYearColor(@member.nextElection)} Relection Year: #{@member.nextElection}
+    
+    %div.memberStats   
+        %section.memberStatsIntro
+            %ul.horizontalList
+                %li Votes with Party 
+                %li Missed Votes
+                %li Cosponsored Bills
+        
+        =render 'recent_activity'        
 
 
         

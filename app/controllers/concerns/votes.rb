@@ -1,12 +1,11 @@
-class Statement<Api_Access
+class Votes<Api_Access
     def initialize(url)
        @url = url 
     end
 
     
-    def getRecentStatments
+    def getRecentVotes
         @statements = makeAPICall(@url)
-        @statements = @statements['results']
-
+        @statements['results']
     end
 end

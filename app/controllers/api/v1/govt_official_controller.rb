@@ -2,15 +2,27 @@ module Api
     module V1
         class GovtOfficialController < ApplicationController
             def show
+                # s Statement.new
+
+                getRecentStatments
+                getRecentVotes
+                # puts @roll_call_ids
+                getRecentBills
+                # getSpecificBillInfo(@bill_ids)
+                # getSpecificRollCallVote(@roll_call_ids)
+                # puts @roll_call_nums
+                
+                #logic for showing whether or not filter buttons have been clicked and rendering information accordingly...
                 case params[:filter]
                 when "statements"
-                    # get statemnet
-                    render json: { data: ["statements", "xxxxx"]}
+                    # render 'govt_official/recent_activity'
+                    render json: { data: ["statements", @statements]}
+                    
                 when "bills"
-                    render json: { data: ["bills", "xxxxx"]}
+                    render json: { data: ["bills", @bills]}
                     
                 when "votes"
-                    render json: { data: ["votes", "xxxxx"]}
+                    render json: { data: ["votes", @votes]}
                     
                 when "twitter"
                     render json: { data: ["twitter", "xxxxx"]}
@@ -18,41 +30,17 @@ module Api
                 else
                     render json: { body: "ok" } 
                 end
-            # getRecentStatments
-            # getRecentVotes
-            # # puts @roll_call_ids
-            # getRecentBills
-            # getSpecificBillInfo(@bill_ids)
-            # getSpecificRollCallVote(@roll_call_ids)
-            # # puts @roll_call_nums
-            end
-            
-            def makeAPICall(url)
-                require 'rubygems'
-                require 'open-uri'
-                require 'net/http'
                 
-                headers = {"X-API-Key" =>"7mzlBEbqun6gjkmVmGMHK9ScX0z4O2NTQk066Zmc"}
-        
-                uri = URI(url)
-                http = Net::HTTP.new(uri.host, uri.port)
-                http.use_ssl = true
-        
-                request = Net::HTTP::Get.new(uri.request_uri, headers)
-                @results = JSON.parse(http.request(request).body)
-                
-                return @results
             end
-            
-            
+
             def getRecentStatments
-                @statements = makeAPICall('https://api.propublica.org/congress/v1/members/' + @member.member_id + '/statements/115.json')
-                @statements = @statements['results']
+                s = Statement.new('https://api.propublica.org/congress/v1/members/' + params[:id] + '/statements/115.json')
+                @statements = s.getRecentStatments
             end
             
             def getRecentVotes
-                @votes = makeAPICall('https://api.propublica.org/congress/v1/members/' + @member.member_id + '/votes.json')
-                @votes = @votes['results'][0]['votes']
+                v = Votes.new('https://api.propublica.org/congress/v1/members/' + params[:id] + '/votes.json')
+                @votes = v.getRecentVotes
                 
                 @roll_call_ids = []
                 @votes.each do |vote|
@@ -61,17 +49,14 @@ module Api
             end
             
             def getRecentBills
-                @bills = makeAPICall('https://api.propublica.org/congress/v1/members/' + @member.member_id + '/bills/introduced.json')
-                @bills = @bills['results'][0]['bills']
+                b = Bills.new('https://api.propublica.org/congress/v1/members/' + params[:id] + '/bills/introduced.json')
+                @bills = b.getRecentBills
                 
                 @bill_ids = []
                 @bills.each do |bill|
                     @bill_ids.push(bill['bill_id'].split('-')[0])
                 end
-                    
             end
-            
-            
             
             # Api is not returning votes for any of the bills....
             def getSpecificBillInfo(bill_ids)

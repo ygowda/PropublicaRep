@@ -5,18 +5,25 @@ $(document).ready(function(){
     console.log(memberId);
     
     var state = {
-        statement: true,
+        statements: true,
         bills: true,
         votes: true,
         twitter: true
     };
     
-    
+    // creating an ajax call will enable you to render data on to the browser immediately
     var makeAjaxCall = function(filterName){
+
         $.ajax({
             url: base_url + memberId + "?filter=" + filterName,
             success: function(response){
+
+                
+                response = response['data'][1]
                 console.log(response)
+                populateBasedOnFilter(response, filterName)
+
+                
             },
             failure: function(err){
                 console.warn(err);
@@ -24,31 +31,58 @@ $(document).ready(function(){
         });
     }
     
+    
+    function populateBasedOnFilter(response, arg){
+
+        switch(arg) {
+            case "statements":
+                var i = 0;
+                for(i = 0; i < response.length; i++){
+                    $('#activityList').append("<li id='listChildren'><div class=''><aside><p>" + new Date(response[i]['date']) + "</p><p>" + response[i]['title'] + "</p></aside></div></li>") 
+                }
+            break;
+            case "bills":
+                var i = 0;
+                for(i = 0; i < response.length; i++){
+                    $('#activityList').append("<li id='listChildren'><div class=''><aside><p>" + response[i]['title'] + "</p><p>" + new Date(response[i]['latest_major_action_date']) + "</p><p>" +response[i]['latest_major_action']+ "</p></aside></div></li>") 
+                }
+            break;
+            case "votes":
+                response = response[0]['votes']
+                var i = 0;
+                for(i = 0; i < response.length; i++){
+                    $('#activityList').append("<li id='listChildren'><div class=''><aside><p>" + new Date(response[i]['date']) + "</p><p>" + response[i]['description'] + "</p><p>" +response[i]['question']+ "</p><p>" +response[i]['position']+ "</p><p>" +response[i]['latest_major_action']+ "</p></aside></div></li>") 
+                }
+            break;
+            case "twitter":
+                
+            break;
+            default:
+        }
+
+        
+    }
+    
+
     $("#statements").on("click", function(event){
         makeAjaxCall("statements")
-        console.log(state)
-        state.statement = !state.statement
-        console.log(state)
+        state.statements = !state.statements
+        $("#statments").data("state", state.statements)
+
     });
     
     $("#bills").on("click", function(event){
         makeAjaxCall("bills")
-        console.log(state)
-        state.statement = !state.statement
-        console.log(state)
+        state.bills = !state.bills
     });
     
     $("#votes").on("click", function(event){
         makeAjaxCall("votes")
-        console.log(state)
-        state.statement = !state.statement
-        console.log(state)
+        state.votes = !state.votes
     });
     
     $("#twitter").on("click", function(event){
         makeAjaxCall("twitter")
-        console.log(state)
-        state.statement = !state.statement
-        console.log(state)
+        state.twitter = !state.twitter
     });
 });
