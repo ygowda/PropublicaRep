@@ -42,13 +42,13 @@ $(document).ready(function(){
                 case "statements":
                     var i = 0;
                     for(i = 0; i < response.length; i++){
-                        $('.activityList').append("<li id='statements'><div class='listChildren'><aside><p class='date'>" + new Date(response[i]['date']) + "</p><p>" + memberName + " released a <a href=" + response[i]['url'] + " target='_blank'>statement</a> </p><p class='description'>" + response[i]['title'] + "</p></aside></div></li>") 
+                        $('.activityList').append("<li id='statements'><div class='listChildren'><aside><p class='date'>" + new Date(response[i]['date']).toDateString() + "</p><p>" + memberName + " released a <a href=" + response[i]['url'] + " target='_blank'>statement</a> </p><p class='description'>" + response[i]['title'] + "</p></aside></div></li>") 
                     }  
                 break;
                 case "bills":
                     var i = 0;
                     for(i = 0; i < response.length; i++){
-                        $('.activityList').append("<li id='bills'><div class='listChildren'><aside><p class='date'>" + new Date(response[i]['latest_major_action_date']) + "</p><p><a href= " + response[i]['congressdotgov_url'] + " target='_blank'><strong>" + response[i]['title'] + "</strong></a></p><p class='description'>" +response[i]['latest_major_action']+ "</p></aside></div></li>") 
+                        $('.activityList').append("<li id='bills'><div class='listChildren'><aside><p class='date'>" + new Date(response[i]['latest_major_action_date']).toDateString() + "</p><p><a href= " + response[i]['congressdotgov_url'] + " target='_blank'><strong>" + response[i]['title'] + "</strong></a></p><p class='description'>" +response[i]['latest_major_action']+ "</p></aside></div></li>") 
                     }
                 break;
                 case "votes":
@@ -64,7 +64,7 @@ $(document).ready(function(){
                             resText = "Passed"
                         }   
                         
-                        $('.activityList').append("<li id='votes'><div class='listChildren'><aside><p class='date'>" + new Date(response[i]['date']) + "</p><p>" + memberName + " voted <span class=" + response[i]['position'].toLowerCase() + ">" + response[i]['position'].toLowerCase() + "</span> on " + response[i]['chamber'] + " Vote " + response[i]['roll_call'] + "</p><p class='description'>" + response[i]['description'] + "</p><p>" +response[i]['question']+ ": <span class= " + resText.toLowerCase() + ">" + resText + "</span></p></aside></div></li>") 
+                        $('.activityList').append("<li id='votes'><div class='listChildren'><aside><p class='date'>" + new Date(response[i]['date']).toDateString() + "</p><p>" + memberName + " voted <span class=" + response[i]['position'].toLowerCase() + ">" + response[i]['position'].toLowerCase() + "</span> on " + response[i]['chamber'] + " Vote " + response[i]['roll_call'] + "</p><p class='description'>" + response[i]['description'] + "</p><p>" +response[i]['question']+ ": <span class= " + resText.toLowerCase() + ">" + resText + "</span></p></aside></div></li>") 
                     }
                 break;
                 case "twitter":
@@ -80,13 +80,13 @@ $(document).ready(function(){
     $("#statements").on("click", function(event){
         // console.log(state.statements)
 
-        // if(state.statements){
-        //     makeAjaxCall("statements")   
-        // }
-        // else{
-        //     console.log("here")
-        //     ('#statements').empty()
-        // }
+        if(state.statements){
+            makeAjaxCall("statements")   
+        }
+        else{
+            console.log("here")
+            ('#statements').empty()
+        }
         makeAjaxCall("statements") 
         console.log(state.statements)
         state.statements = !state.statements

@@ -1,39 +1,40 @@
-%section.personalInfo
-    %div.header
-        %h3#memberName= @member.firstName + " " +@member.lastName + ' (' + @member.party + ')'
-    
-    %section.memberCard
-        %div
-            %img.memberImage(src="#{@member.image_string}")
-        %div.memberInfo
-            %ul Senator from the state of #{@member.state}
-            %ul= @member.DOB.strftime("%B %d, %Y")
-            %button.btn.btn-primary#compareButton Compare Senators
-
-
-%section.legislativeInfo
-    %h4.electionYear{class: renderElectionYearColor(@member.nextElection)} Relection Year: #{@member.nextElection}
-    
-    %div.memberStats   
-        %section.memberStatsIntro
-            %ul.horizontalList
-                %li 
-                    %div
-                        %p Votes with Party
-                        %p.stat=number_to_percentage(@member.votesWithParty)
-                %li 
-                    %div
-                        %p Missed Votes
-                        %p.stat=number_to_percentage(@member.missed_votes)
-                %li 
-                    %div
-                        %p Cosponsored Bills
-                        %p.stat xxxx
+%div.container-fluid
+    %section.personalInfo.col-md-3
+        %div.header
+            %h3#memberName= @member.firstName + " " +@member.lastName + ' (' + @member.party + ')'
         
-        =render 'recent_activity'        
-
-
+        %section.memberCard
+            %div
+                %img.memberImage(src="#{@member.image_string}")
+            %div.memberInfo
+                %ul Senator from the state of #{@member.state}
+                %ul= @member.DOB.strftime("%B %d, %Y")
+                %button.btn.btn-primary#compareButton Compare Senators
+    
+    
+    %section.legislativeInfo.col-md-9
+        %h4.electionYear{class: renderElectionYearColor(@member.nextElection)} Relection Year: #{@member.nextElection}
         
+        %div.memberStats   
+            %section.memberStatsIntro
+                %ul.horizontalList
+                    %li 
+                        %div
+                            %p Votes with Party
+                            %p.stat=number_to_percentage(@member.votesWithParty)
+                    %li 
+                        %div
+                            %p Missed Votes
+                            %p.stat=number_to_percentage(@member.missed_votes)
+                    %li 
+                        %div
+                            %p Cosponsored Bills
+                            %p.stat xxxx
+            
+            =render 'recent_activity'        
+    
+    
+            
 
 // **make use of google news api to get up to date news articles on person
 
