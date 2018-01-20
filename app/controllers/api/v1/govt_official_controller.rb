@@ -2,13 +2,12 @@ module Api
     module V1
         class GovtOfficialController < ApplicationController
             def show
-                # s Statement.new
 
                 getRecentStatments
                 getRecentVotes
                 # puts @roll_call_ids
                 getRecentBills
-                # getSpecificBillInfo(@bill_ids)
+                getSpecificBillInfo(@bill_ids)
                 # getSpecificRollCallVote(@roll_call_ids)
                 # puts @roll_call_nums
                 
@@ -49,8 +48,9 @@ module Api
             end
             
             def getRecentBills
-                b = Bills.new('https://api.propublica.org/congress/v1/members/' + params[:id] + '/bills/introduced.json')
-                @bills = b.getRecentBills
+                @b = Bills.new
+                @b.setUrl('https://api.propublica.org/congress/v1/members/' + params[:id] + '/bills/introduced.json')
+                @bills = @b.getRecentBills
                 
                 @bill_ids = []
                 @bills.each do |bill|
@@ -60,19 +60,7 @@ module Api
             
             # Api is not returning votes for any of the bills....
             def getSpecificBillInfo(bill_ids)
-                @roll_call_nums = []
-                bill_ids.each do |bill_id|
-                    results = makeAPICall("https://api.propublica.org/congress/v1/115/bills/" + bill_id +".json")
-                    results = results['results'][0]
-                    # puts results
-                    #need to store bill information at this point
-                    
-                    actions = results['actions']
-                    #need to store actions here
-                    votes = results['votes']
-                    # puts votes
-                    #need to store votes and get the roll call nums at this point
-                end
+                output = @b.getSpecificBillInfo(bill_ids)
             end
             
             def getSpecificRollCallVote(roll_call_ids)

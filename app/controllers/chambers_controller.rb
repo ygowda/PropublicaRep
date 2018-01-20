@@ -37,7 +37,6 @@ class ChambersController < ApplicationController
         #going through the database each time to check if the member exists might take a lot of time...
         
         @result.each do |member|
-            
             #doesn't seem like this is taking too much time but there has got to be a better way to do this....
             unless GovtOfficial.exists?(member_id: member['id'], firstName: member['first_name'], lastName: member['last_name'])
                 

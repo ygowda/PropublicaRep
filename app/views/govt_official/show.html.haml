@@ -1,6 +1,6 @@
 %section.personalInfo
     %div.header
-        %h3= @member.firstName + " " +@member.lastName + ' (' + @member.party + ')'
+        %h3#memberName= @member.firstName + " " +@member.lastName + ' (' + @member.party + ')'
     
     %section.memberCard
         %div
@@ -8,7 +8,7 @@
         %div.memberInfo
             %ul Senator from the state of #{@member.state}
             %ul= @member.DOB.strftime("%B %d, %Y")
-            %button.btn.btn-success#compareButton Compare Senators
+            %button.btn.btn-primary#compareButton Compare Senators
 
 
 %section.legislativeInfo
@@ -17,9 +17,18 @@
     %div.memberStats   
         %section.memberStatsIntro
             %ul.horizontalList
-                %li Votes with Party 
-                %li Missed Votes
-                %li Cosponsored Bills
+                %li 
+                    %div
+                        %p Votes with Party
+                        %p.stat=number_to_percentage(@member.votesWithParty)
+                %li 
+                    %div
+                        %p Missed Votes
+                        %p.stat=number_to_percentage(@member.missed_votes)
+                %li 
+                    %div
+                        %p Cosponsored Bills
+                        %p.stat xxxx
         
         =render 'recent_activity'        
 

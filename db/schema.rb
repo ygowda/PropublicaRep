@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180114041508) do
+ActiveRecord::Schema.define(version: 20180120013433) do
 
   create_table "actions", force: :cascade do |t|
     t.integer  "action_id"
@@ -52,9 +52,12 @@ ActiveRecord::Schema.define(version: 20180114041508) do
     t.string   "party"
     t.integer  "nextElection"
     t.decimal  "votesWithParty"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "image_string"
+    t.integer  "bills_sponsored"
+    t.integer  "bills_cosponsored"
+    t.decimal  "missed_votes"
   end
 
   create_table "votes", force: :cascade do |t|

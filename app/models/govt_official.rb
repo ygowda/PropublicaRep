@@ -25,6 +25,9 @@ class GovtOfficial < ActiveRecord::Base
         self.party = data['party']
         self.nextElection = data['next_election']
         self.votesWithParty = data['votes_with_party_pct']
+        self.missed_votes = data['missed_votes_pct']
+        self.bills_sponsored = data['bills_sponsored']
+        self.bills_cosponsored = data['bills_cosponsored']
     end
     
     def add_image_url(image_url)

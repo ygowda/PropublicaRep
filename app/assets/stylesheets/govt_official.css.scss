@@ -21,6 +21,11 @@
     }
 }
 
+// **This needs to be changed into something else....
+// alignment is not correct
+.electionYear{
+    width: 800px;
+}
 
 .currentYear{
     background: #3ee059;
@@ -61,20 +66,26 @@
 
 .memberStats{
     display: block;
+    .memberStatsIntro{
+        padding-top: 15px;
+        margin-bottom: 15%;
+    }
 }
 
-.memberStatsIntro{
-    padding-top: 15px;
-    margin-bottom: 15%;
-}
+
 
 
 .horizontalList{
     list-style-type: none;
         li{
-            display: inline; 
-            margin-right: 220px;
+            display: inline-block; 
+            margin-right: 120px;
         }
+    .stat{
+        font-size: 42px;
+        font-family: "Times New Roman";
+        color: #4599e8;
+    }
 }
 
 .memberStatsRecent{
@@ -103,10 +114,30 @@
 }
 
 
-#activityList{
+.activityList{
     list-style-type: none;
-    #listChildren{
+    .listChildren{
         border-bottom: 0.5px solid #B9CED6;
+    }
+    .date{
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .description{
+        font-style: italic;
+        color: #6e84a3;
+    }
+    
+    .yes, .passed{
+        color: #2add3f;
+        font-style: italic;
+        font-weight: bold;
+    }
+    
+    .no, .failed{
+        color: #db4818;
+        font-style: italic;
+        font-weight: bold;
     }
 }
 
