@@ -2,13 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// ***doesn't actually fix the alignment... you have to do something else. 
 .personalInfo{
     float: left;
+    width: 20%;
+    padding: 0;
 }
 
 .legislativeInfo{
     float: left;
-    margin-left: -70px;
+    width: 80%;
+    padding: 0;
 }
 
 .header{
@@ -103,9 +107,9 @@
     
     .plus{
         li{
-            margin-right: 200px;    
+            margin-right: 180px;    
         }
-        display: inline;
+        display: inline-block;
         // overflow: scroll;
     }
 }
@@ -140,40 +144,28 @@
     }
 }
 
-@mixin recentBtn{
-    background: blue;
-    display: inline;
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    border: 1px solid red;
+.votes{
+    display: inline-block;
 }
 
-// **Color change here should probably just be handled by javascript...
 
-// svg#statment:hover{
-//     background-color: #3ca88d;
-// }
-// svg#bills:hover{
-//     background-color: #e4e876;
-// }
-// svg#votes:hover{
-//     background-color: #9ce552;
-// }
-// svg#twitter:hover{
-//     background-color: #7fc9e2;    
-// }
+$statmentColor: #35a87c;
+$billColor: #edbe40;
+$voteColor: #3be557;
+$twitterColor: #35d1f4;
 
-// #statements:before{
-//     @include recentBtn;
-//     "#3ca88d"
-// }
-// #bills:before{
-//     @include recentBtn;
-// }
-// #votes:before{
-//     @include recentBtn; 
-// }
-// #twitter:before{
-//     @include recentBtn;
-// }
+.fa-quote-right:hover{
+    color: #35a87c;
+}
+
+.fa-file-text:hover{
+    color: #edbe40;
+}
+
+.fa-check-circle:hover{
+    color: #3be557;
+}
+
+.fa.fa-twitter:hover{
+    color: #35d1f4;
+}

@@ -33,6 +33,8 @@ gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 
 gem 'open_uri_redirections', '~> 0.2.1'
 
+gem "font-awesome-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
