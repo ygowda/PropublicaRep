@@ -69,6 +69,8 @@ Rails.application.routes.draw do
     # member do 
     #   get 'index'
     # end
+  
+  resources :bills
 
   root 'chambers#senate'
   

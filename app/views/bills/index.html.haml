@@ -1,0 +1,16 @@
+%table
+    %tr.tableHeader
+         
+        %th Date 
+        %th Title 
+        %th Sponsor 
+        %th Latest Status
+        
+    -@bills.each do |bill|
+                
+        %tr
+        
+            %td=bill.latest_major_action_date
+            %td=bill.title
+            %td=bill.sponsor_id
+            %td=bill.latest_major_action

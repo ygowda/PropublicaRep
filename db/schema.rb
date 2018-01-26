@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120013433) do
+ActiveRecord::Schema.define(version: 20180126023959) do
 
   create_table "actions", force: :cascade do |t|
     t.integer  "action_id"
@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(version: 20180120013433) do
     t.date     "introduced_date"
     t.text     "summary"
     t.text     "short_summary"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "latest_major_action",      default: ""
+    t.date     "latest_major_action_date"
   end
 
   create_table "govt_officials", id: false, force: :cascade do |t|
