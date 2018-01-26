@@ -3,10 +3,10 @@ module Api
         class GovtOfficialController < ApplicationController
             def show
 
-                getRecentStatments
-                getRecentVotes
+                getMemberRecentStatments
+                getMemberRecentVotes
                 # puts @roll_call_ids
-                getRecentBills
+                getMemberRecentBills
                 getSpecificBillInfo(@bill_ids)
                 # getSpecificRollCallVote(@roll_call_ids)
                 # puts @roll_call_nums
@@ -32,12 +32,12 @@ module Api
                 
             end
 
-            def getRecentStatments
+            def getMemberRecentStatments
                 s = Statement.new('https://api.propublica.org/congress/v1/members/' + params[:id] + '/statements/115.json')
                 @statements = s.getRecentStatments
             end
             
-            def getRecentVotes
+            def getMemberRecentVotes
                 v = Votes.new('https://api.propublica.org/congress/v1/members/' + params[:id] + '/votes.json')
                 @votes = v.getRecentVotes
                 
@@ -47,7 +47,7 @@ module Api
                 end
             end
             
-            def getRecentBills
+            def getMemberRecentBills
                 @b = Bills.new
                 @b.setUrl('https://api.propublica.org/congress/v1/members/' + params[:id] + '/bills/introduced.json')
                 @bills = @b.getRecentBills
@@ -64,7 +64,7 @@ module Api
             end
             
             def getSpecificRollCallVote(roll_call_ids)
-                #do you need to make this call twice for both odd numbered and even numbered years???
+                #may need to make call twice for odd and even number of years
                 roll_call_ids.each do |roll_call|
                     @roll_call_votes = makeAPICall("https://api.propublica.org/congress/v1/115/senate/sessions/1/votes/" + roll_call + ".json")
                     @roll_call_votes = @roll_call_votes['results']['votes']

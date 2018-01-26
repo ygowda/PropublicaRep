@@ -1,5 +1,7 @@
 class GovtOfficial < ActiveRecord::Base
     #maybe a has_many bill relationship should go here....?
+    has_many :bills, foreign_key: "sponsor_id"
+    
     self.primary_key = :member_id
     enum chamber: [:house, :senate]
     

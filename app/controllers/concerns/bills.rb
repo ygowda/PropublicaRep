@@ -1,13 +1,14 @@
 class Bills<Api_Access
+    
     def initialize
-    #   @url = url 
+        @bill_types = ['introduced', 'updated', 'active', 'passed', 'enacted', 'vetoed']
     end
 
     def setUrl(url)
         @url = url
     end
     
-    def getRecentBills
+    def getMemberRecentBills
         @bills = makeAPICall(@url)
         @bills['results'][0]['bills']
         # puts @bills['results'][0]['bills']
@@ -28,20 +29,7 @@ class Bills<Api_Access
             
             unless Bill.exists?(bill_id: results["bill_id"], title: results["title"])
                 bill = Bill.new 
-                bill.bill_id = results["bill_id"]
-                bill.bill_slug = results["bill_slug"] 
-                bill.title = results["title"]
-                bill.short_title = results["short_title"]
-                bill.sponsor_id = results["sponsor_id"]
-                bill.sponsor_party = results["sponsor_party"] 
-                bill.sponsor_state = results["sponsor_state"]
-                bill.introduced_date = results["introduced_date"]
-                bill.summary = results["summary"]
-                bill.short_summary = results["short_summary"]
-                bill.created_at = results["created_at"]
-                bill.updated_at = results["updated_at"]
-                bill.latest_major_action = results["latest_major_action"]
-                bill.latest_major_action_date = results["latest_major_action_date"]
+                bill.initialize_bill(results)
                 bill.save
             end
             
@@ -74,5 +62,25 @@ class Bills<Api_Access
         output['votes'] = votes
         
         return output
+    end
+    
+    
+    def getRecentBills
+        @bill_types.each do |type|
+            @bills = makeAPICall("https://api.propublica.org/congress/v1/115/senate/bills/" + type + ".json")
+            @bills = @bills['results'][0]['bills']
+            
+            if @bills.length != 0 
+                @bills.each do |bill|
+                    #no implicit conversion????
+                    ##should not be checking like this. should be iterating through the actions of the bills to see if there is a match
+                    unless Bill.exists?(bill_id: bill['bill_id'], latest_major_action: bill['last_major_action'])
+                        b = Bill.new
+                        b.initialize_bill(bill)
+                        b.save
+                    end
+                end
+            end
+        end
     end
 end
