@@ -21,6 +21,18 @@
 @import "font-awesome";
 
 
-// body{
-//     background: #E2EDE9;
-// }
+.party{
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    
+    &.dem{
+        background: #469BF0;
+    }
+    &.rep{
+        background: #E8411C;
+    }
+    &.ind{
+        background: #FAD76F;
+    }
+}

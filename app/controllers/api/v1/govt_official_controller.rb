@@ -3,24 +3,21 @@ module Api
         class GovtOfficialController < ApplicationController
             def show
 
-                getMemberRecentStatments
-                getMemberRecentVotes
-                # puts @roll_call_ids
-                getMemberRecentBills
-                getSpecificBillInfo(@bill_ids)
-                # getSpecificRollCallVote(@roll_call_ids)
-                # puts @roll_call_nums
-                
                 #logic for showing whether or not filter buttons have been clicked and rendering information accordingly...
                 case params[:filter]
                 when "statements"
+                    getMemberRecentStatments
                     # render 'govt_official/recent_activity'
                     render json: { data: ["statements", @statements]}
                     
                 when "bills"
-                    render json: { data: ["bills", @bills]}
+                    getMemberRecentBillIds
+                    getSpecificBillInfo(@bills_info['bill_ids'])
+                    
+                    render json: { data: ["bills", @bills_info['bills']]}
                     
                 when "votes"
+                    getMemberRecentVotes
                     render json: { data: ["votes", @votes]}
                     
                 when "twitter"
@@ -47,19 +44,15 @@ module Api
                 end
             end
             
-            def getMemberRecentBills
+            def getMemberRecentBillIds
                 @b = Bills.new
                 @b.setUrl('https://api.propublica.org/congress/v1/members/' + params[:id] + '/bills/introduced.json')
-                @bills = @b.getRecentBills
-                
-                @bill_ids = []
-                @bills.each do |bill|
-                    @bill_ids.push(bill['bill_id'].split('-')[0])
-                end
+                @bills_info = @b.getMemberRecentBillIds
             end
             
             # Api is not returning votes for any of the bills....
             def getSpecificBillInfo(bill_ids)
+                #maynot actually be needing to return anything here...
                 output = @b.getSpecificBillInfo(bill_ids)
             end
             

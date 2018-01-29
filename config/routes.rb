@@ -66,11 +66,10 @@ Rails.application.routes.draw do
   end
   
   resources :govt_official
-    # member do 
-    #   get 'index'
-    # end
   
-  resources :bills
+  resources :bills 
+  
+  resources :actions
 
   root 'chambers#senate'
   

@@ -1,0 +1,27 @@
+// Place all the styles related to the bills controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.billInfo{
+    width: 30%;
+}
+
+.billActions{
+    width: 70%;
+}
+
+th{
+    .date{
+        text-align: center;
+    }
+    .title{
+        text-align: center;
+    }
+    .sponsor{
+        text-align: center;
+    }
+    .status{
+        text-align: center;
+    }
+}
+

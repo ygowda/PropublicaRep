@@ -40,6 +40,7 @@ $(document).ready(function(){
             console.log(response)
             console.log(arg)
 
+            // better way is to recieve hashmap with date key and object strings as value
             switch(arg) {
                 case "statements":
                     var i = 0;

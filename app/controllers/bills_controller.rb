@@ -1,9 +1,19 @@
 class BillsController < ApplicationController
     
     def index
-        @bills = Bill.all
+        
         b = Bills.new
-        b.getRecentBills
+        
+        bill_types = ['introduced', 'updated', 'active', 'passed', 'enacted', 'vetoed']
+        bill_types.each do |bill_type|
+            b.setUrl("https://api.propublica.org/congress/v1/115/senate/bills/" + bill_type + ".json")
+            b.getRecentBills
+        end
+        
+        @bills = Bill.all
+    end
+    
+    def show
     end
     
     
