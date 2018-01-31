@@ -8,6 +8,7 @@ class Bills<Api_Access
         @url = url
     end
     
+    #initializer methods to get votes...
     def initializeBill(results)
         unless Bill.exists?(bill_id: results["bill_id"], title: results["title"])
             bill = Bill.new 
@@ -16,51 +17,54 @@ class Bills<Api_Access
         end
     end
     
+    def initializeActions(results)
+        unless results['actions'].length == 0 
+            results['actions'].each do |bill_action|
+                unless Action.exists?(action_id: bill_action['id'])
+                    action = Action.new
+                    action.initialize_action(bill_action, results['bill_id'].split('-')[0])
+                    action.save
+                end
+            end
+        end
+    end
+    
+    def initializeVotes(results)
+        if results['votes'].length != 0
+            results['votes'].each do |vote|
+                unless Vote.exists?(roll_call: vote['roll_call'])
+                    v = Vote.new
+                    v.initialize_vote(vote, results['bill_id'].split('-')[0])
+                    v.save
+                end
+            end
+        end
+        
+    end
+    
     
     
     def getRecentBills
         @bills = makeAPICall(@url)
         @bills = @bills['results'][0]['bills']
+        # seems to be adding twice the number of bills for some reason...
+        # unless statement might be failing
         @bills.each do |bill|
+            getSpecificBillInfo(bill["bill_id"].split('-')[0])
             initializeBill(bill)
         end
     end
     
     
-    def getSpecificBillInfo(bill_ids)
+    def getSpecificBillInfo(bill_id)
         
-        actions = []
-        votes = []
-        bill_info = []
-        bill_ids.each do |bill_id|
-            results = makeAPICall("https://api.propublica.org/congress/v1/115/bills/" + bill_id +".json")
-            results = results['results'][0]
-            bill_info.push(results)
-            
-            #initialize bill information
-            initializeBill(results)
+        results = makeAPICall("https://api.propublica.org/congress/v1/115/bills/" + bill_id +".json")
+        results = results['results'][0]
 
-            unless results['actions'].length == 0 
-                results['actions'].each do |bill_action|
-                    unless Action.exists?(action_id: bill_action['id'])
-                        action = Action.new
-                        action.initialize_action(bill_action, results['bill_id'])
-                        action.save
-                    end
-                end
-            end
-            
-            actions.push(results['actions'])
-            #need to store actions here
-            votes.push(results['votes'])
-        end
-        
-        output = Hash.new
-        output['bill_info'] = bill_info
-        output['actions'] = actions
-        output['votes'] = votes
-        
-        return output
+        #initialize bill information
+        initializeBill(results)
+        initializeActions(results)
+        initializeVotes(results)
     end
     
     
@@ -76,14 +80,7 @@ class Bills<Api_Access
 
             if @bills.length != 0 
                 @bills.each do |bill|
-                    
-                    ##should not be checking like this. should be iterating through the actions of the bills to see if there is a match
-                    unless Bill.exists?(bill_id: bill['bill_id'], latest_major_action: bill['last_major_action'])
-                        b = Bill.new
-                        b.initialize_bill(bill)
-                        b.save
-                        bill_ids.push(bill['bill_id'].split('-')[0])
-                    end
+                    getSpecificBillInfo(bill["bill_id"].split('-')[0])
                 end
             end
         end

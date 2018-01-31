@@ -1,5 +1,33 @@
 %div.container-fluid
-    .row
-        %section.billInfo
+    %h1.indivTitle="#{@bill.bill_id}: #{@bill.title}"
+    %div
+        %section.billInfo.col-md-2
+            
+            =button_to "Read the bill", @bill.congressdotgov_url, class: 'btn btn-primary btn-block readBill', form: {target: '_blank'}
+            %table
+                %th About this bill
+                %tr
+                    %td
+                        Introduced  
+                        %br
+                        =@bill.introduced_date
+                %tr
+                    %td
+                        Latest Major Date Action
+                        %br
+                        =@bill.latest_major_action_date
+                %tr 
+                    %td
+                        =link_to "See it on GovTrack", @bill.govtrack_url, target: '_blank'
 
-        %section.billActions
+
+        %section.billActions.col.md-8
+            %h2 Bill Actions
+            
+            %table
+                %tr
+                    %th Date
+                    %th Description
+                %tr
+                    %td
+                    %td

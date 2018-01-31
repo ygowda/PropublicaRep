@@ -7,13 +7,11 @@ module Api
                 case params[:filter]
                 when "statements"
                     getMemberRecentStatments
-                    # render 'govt_official/recent_activity'
                     render json: { data: ["statements", @statements]}
                     
                 when "bills"
                     getMemberRecentBillIds
-                    getSpecificBillInfo(@bills_info['bill_ids'])
-                    
+
                     render json: { data: ["bills", @bills_info['bills']]}
                     
                 when "votes"
@@ -50,10 +48,10 @@ module Api
                 @bills_info = @b.getMemberRecentBillIds
             end
             
-            # Api is not returning votes for any of the bills....
+            # only a select few of the bills are returning votes....
             def getSpecificBillInfo(bill_ids)
                 #maynot actually be needing to return anything here...
-                output = @b.getSpecificBillInfo(bill_ids)
+                @b.getSpecificBillInfo(bill_ids)
             end
             
             def getSpecificRollCallVote(roll_call_ids)

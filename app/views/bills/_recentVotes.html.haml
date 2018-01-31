@@ -1,0 +1,34 @@
+%header
+    %h2.title
+        Recently Signed Into Law
+    %div.key
+        %div
+            %div.yes
+                Yes:
+            %div.voteKey.Yes.R
+                R
+            %div.voteKey.Yes.D
+                D
+            %div.voteKey.Yes.I
+                I
+        %div
+            %div.no
+                No:
+            %div.voteKey.No.R
+                R
+            %div.voteKey.No.D
+                D
+            %div.voteKey.No.I
+                I
+
+%section.recentBillVotes
+    -@votes.each do |vote|
+        %div.singleBillVoteBox
+            %div.billButton VIEW BILL
+                    
+            %div.billTitle
+                =vote.bill_id
+            %div.verticalGrid
+            
+            %div
+    

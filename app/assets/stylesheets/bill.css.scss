@@ -2,6 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$red: #c44231;
+$blue: #2c59c1;
+$orange: #e5be3d;
+$fade: 000070;
+
+
+.title{
+    text-align: center;
+    font-weight: bold;
+    font-family: "Times New Roman"
+}
+
+.indivTitle{
+    text-align: left;
+    font-weight: bold;
+}
+
+.readBill{
+    width: 141px;
+}
+
+.key{
+    display: inline-block;
+}
+
 .billInfo{
     width: 30%;
 }
@@ -10,18 +35,55 @@
     width: 70%;
 }
 
+
+.voteKey{
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
+.R.Yes{
+   background: $red; 
+}
+
+.D.Yes{
+    background: $blue;
+}
+
+.I.Yes{
+    background: $orange;    
+}
+
+
+.R.No{
+   background: $red + $fade; 
+}
+
+.D.No{
+    background: $blue + $fade;
+}
+
+.I.No{
+    background: $orange + $fade + 000030;    
+}
+
+
 th{
-    .date{
+    &.date{
         text-align: center;
     }
-    .title{
+    &.title{
         text-align: center;
     }
-    .sponsor{
+    &.sponsor{
         text-align: center;
     }
-    .status{
+    &.status{
         text-align: center;
     }
 }
 
+.singleBillVoteBox{
+    border: 1px solid #0a1c3a;
+    display: inline;
+}

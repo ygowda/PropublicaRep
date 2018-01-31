@@ -1,21 +1,24 @@
 %table
+    =render 'recentVotes'
+        
     %tr.tableHeader
          
-        %th Date 
-        %th Title 
-        %th Sponsor 
-        %th Latest Status
+        %th.date Date 
+        %th.title Title 
+        %th.sponsor Sponsor 
+        %th.status Latest Status
+        
         
     -@bills.each do |bill|
                 
         %tr
         
-            %td.date=bill.latest_major_action_date
-            %td.title=link_to bill.title, bill_path(bill.bill_id)
-            %td.sponsor
+            %td=bill.latest_major_action_date
+            %td=link_to bill.title, bill_path(bill.bill_id)
+            %td
                 -if bill.govt_official != nil
                     %div{class: renderPartyColor(bill.govt_official.party)}
                     =bill.govt_official.firstName + " " + bill.govt_official.lastName
                 -else
                     Not Available
-            %td.status=bill.latest_major_action
+            %td=bill.latest_major_action

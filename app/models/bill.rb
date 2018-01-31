@@ -1,7 +1,8 @@
 class Bill < ActiveRecord::Base 
     has_many :actions
+    has_many :votes
     belongs_to :govt_official, foreign_key: "sponsor_id"
-    
+
     def initialize_bill(data)
         self.bill_id = data["bill_id"]
         self.bill_slug = data["bill_slug"] 
@@ -17,5 +18,7 @@ class Bill < ActiveRecord::Base
         self.updated_at = data["updated_at"]
         self.latest_major_action = data["latest_major_action"]
         self.latest_major_action_date = data["latest_major_action_date"]
+        self.congressdotgov_url = data["congressdotgov_url"]
+        self.govtrack_url = data["govtrack_url"]
     end
 end
