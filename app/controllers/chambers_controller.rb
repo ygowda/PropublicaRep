@@ -11,7 +11,8 @@ class ChambersController < ApplicationController
         #should combine this into 1 but can fix this later...
         getMembersInfo("Senate")
         # getMembersInfo("House")
-        @govtOfficials = GovtOfficial.all.order("votesWithParty DESC")
+        @govtOfficials = GovtOfficial.all
+        #.order("voteswithparty DESC")
 
         #should you be calling two different forms in rails??
     end
