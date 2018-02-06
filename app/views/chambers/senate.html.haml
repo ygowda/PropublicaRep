@@ -22,7 +22,6 @@
     -@govtOfficials.each do |member|
                 
         %tr
-        
             %td
                 %div.image
                     %img(src="#{member.image_string}")
@@ -30,9 +29,9 @@
             %td
                 %div.memberInfo
                     %div{class: renderPartyColor(member.party)}
-                    =link_to member.firstName + " " + member.lastName, govt_official_path(member.id)
+                    =link_to "#{member.first_name} #{member.last_name}", govt_official_path(member.id)
                     %br
                     .description
                         ="#{member.party} - #{member.state}"
-            %td=member.nextElection
-            %td=member.votesWithParty
+            %td=member.next_election
+            %td=member.votes_with_party

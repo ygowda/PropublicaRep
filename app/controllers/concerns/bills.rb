@@ -2,6 +2,7 @@ class Bills<Api_Access
     
     def initialize
         @bill_types = ['introduced', 'updated', 'active', 'passed', 'enacted', 'vetoed']
+        @v = Votes.new
     end
 
     def setUrl(url)
@@ -10,7 +11,8 @@ class Bills<Api_Access
     
     #initializer methods to get votes...
     def initializeBill(results)
-        unless Bill.exists?(bill_id: results["bill_id"], title: results["title"])
+        # need to speed up lookup query...
+        unless Bill.exists?(bill_id: results["bill_id"].split('-')[0], title: results["title"])
             bill = Bill.new 
             bill.initialize_bill(results)
             bill.save
@@ -42,8 +44,6 @@ class Bills<Api_Access
         
     end
     
-    
-    
     def getRecentBills
         @bills = makeAPICall(@url)
         @bills = @bills['results'][0]['bills']
@@ -58,7 +58,7 @@ class Bills<Api_Access
     
     def getSpecificBillInfo(bill_id)
         
-        results = makeAPICall("https://api.propublica.org/congress/v1/115/bills/" + bill_id +".json")
+        results = makeAPICall("https://api.propublica.org/congress/v1/115/bills/" + bill_id + ".json")
         results = results['results'][0]
 
         #initialize bill information
@@ -66,8 +66,7 @@ class Bills<Api_Access
         initializeActions(results)
         initializeVotes(results)
     end
-    
-    
+
     def getMemberRecentBillIds
         bills_info = Hash.new
         bills_info['bills'] = Array.new

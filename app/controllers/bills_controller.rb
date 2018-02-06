@@ -12,15 +12,20 @@ class BillsController < ApplicationController
         
         #models to be accessed in the frontend 
         @bills = Bill.all.order("latest_major_action_date DESC")
-        # @votes = Vote.limit(3).order("date DESC").find_by(question: "On Passage")
-        @votes = Vote.limit(3).order("date DESC")
+        @votes = Vote.where(question: "On Passage").limit(3).order("date DESC")
+        # @vote_details = Hash.new
+        v = Votes.new
+        
+        @votes.each do |vote|
+           results = v.getVoteByRollCall(vote['roll_call'], vote)
+        end
     end
     
     def show
         @bill = Bill.find_by(bill_id: params[:id])
-        @actions = @bill.actions
-        puts "actions****"
-        puts @actions
+        # why can't you get actions this way??
+        # @actions = @bill.actions
+        @actions = Action.where(bill_id: params[:id]).order("date DESC")
     end
     
     

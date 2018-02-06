@@ -13,4 +13,13 @@ class Vote < ActiveRecord::Base
         self.bill_id = bill_id
     end
     
+    def add_party_votes(results)
+        self.democratic[0] = results['democratic']['yes'].to_i
+        self.democratic[1] = results['democratic']['no'].to_i
+        self.republican[0] = results['republican']['yes'].to_i
+        self.republican[1] = results['republican']['no'].to_i
+        self.independent[0] = results['independent']['yes'].to_i
+        self.independent[1] = results['independent']['no'].to_i
+    end
+    
 end

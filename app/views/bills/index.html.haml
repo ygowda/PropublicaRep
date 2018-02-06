@@ -1,6 +1,14 @@
-%table
+
+%div.recentVotes
     =render 'recentVotes'
-        
+%div.bill-categories    
+    =render 'billCategories'
+
+
+%h2.header Recent Activity
+
+%table
+
     %tr.tableHeader
          
         %th.date Date 
@@ -13,12 +21,12 @@
                 
         %tr
         
-            %td=bill.latest_major_action_date
+            %td.date=bill.latest_major_action_date.strftime("%b. %d").upcase 
             %td=link_to bill.title, bill_path(bill.bill_id)
             %td
                 -if bill.govt_official != nil
                     %div{class: renderPartyColor(bill.govt_official.party)}
-                    =bill.govt_official.firstName + " " + bill.govt_official.lastName
+                    =bill.govt_official.first_name + " " + bill.govt_official.last_name
                 -else
                     Not Available
             %td=bill.latest_major_action

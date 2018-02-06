@@ -4,7 +4,7 @@ class Bill < ActiveRecord::Base
     belongs_to :govt_official, foreign_key: "sponsor_id"
 
     def initialize_bill(data)
-        self.bill_id = data["bill_id"]
+        self.bill_id = data["bill_id"].split('-')[0]
         self.bill_slug = data["bill_slug"] 
         self.title = data["title"]
         self.short_title = data["short_title"]
@@ -20,5 +20,9 @@ class Bill < ActiveRecord::Base
         self.latest_major_action_date = data["latest_major_action_date"]
         self.congressdotgov_url = data["congressdotgov_url"]
         self.govtrack_url = data["govtrack_url"]
+    end
+    
+    def get_title
+        self.title
     end
 end

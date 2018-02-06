@@ -2,7 +2,7 @@
     .row
         %section.personalInfo
             %div.header
-                %h3#memberName= @member.firstName + " " +@member.lastName + ' (' + @member.party + ')'
+                %h3#memberName= "#{@member.first_name} #{@member.last_name} (#{@member.party})"
             
             %section.memberCard
                 %div
@@ -14,7 +14,7 @@
         
         
         %section.legislativeInfo
-            %h4.electionYear{class: renderElectionYearColor(@member.nextElection)} Relection Year: #{@member.nextElection}
+            %h4.electionYear{class: renderElectionYearColor(@member.next_election)} Relection Year: #{@member.next_election}
             
             %div.memberStats   
                 %section.memberStatsIntro
@@ -22,7 +22,7 @@
                         %li 
                             %div
                                 %p Votes with Party
-                                %p.stat=number_to_percentage(@member.votesWithParty)
+                                %p.stat=number_to_percentage(@member.votes_with_party)
                         %li 
                             %div
                                 %p Missed Votes

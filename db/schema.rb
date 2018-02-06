@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131034105) do
+ActiveRecord::Schema.define(version: 20180206024252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180131034105) do
     t.string   "action_type"
     t.date     "date"
     t.string   "description"
-    t.integer  "bill_id"
+    t.string   "bill_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -49,16 +49,16 @@ ActiveRecord::Schema.define(version: 20180131034105) do
 
   create_table "govt_officials", id: false, force: :cascade do |t|
     t.string   "member_id"
-    t.string   "firstName"
-    t.string   "lastName"
+    t.string   "first_name"
+    t.string   "last_name"
     t.date     "DOB"
     t.string   "twitter"
     t.integer  "chamber"
     t.string   "title"
     t.string   "state"
     t.string   "party"
-    t.integer  "nextElection"
-    t.decimal  "votesWithParty"
+    t.integer  "next_election"
+    t.decimal  "votes_with_party"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "image_string"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 20180131034105) do
     t.integer  "bills_cosponsored"
     t.decimal  "missed_votes"
   end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.date     "date"
@@ -75,9 +85,12 @@ ActiveRecord::Schema.define(version: 20180131034105) do
     t.integer  "total_yes"
     t.integer  "total_no"
     t.integer  "total_not_voting"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "bill_id",          default: ""
+    t.integer  "democratic",       default: [0, 0],              array: true
+    t.integer  "republican",       default: [0, 0],              array: true
+    t.integer  "independent",      default: [0, 0],              array: true
   end
 
 end

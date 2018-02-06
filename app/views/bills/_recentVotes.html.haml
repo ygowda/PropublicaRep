@@ -1,34 +1,62 @@
 %header
-    %h2.title
+    %h2.header
         Recently Signed Into Law
-    %div.key
-        %div
-            %div.yes
-                Yes:
-            %div.voteKey.Yes.R
-                R
-            %div.voteKey.Yes.D
-                D
-            %div.voteKey.Yes.I
-                I
-        %div
-            %div.no
-                No:
-            %div.voteKey.No.R
-                R
-            %div.voteKey.No.D
-                D
-            %div.voteKey.No.I
-                I
-
-%section.recentBillVotes
-    -@votes.each do |vote|
-        %div.singleBillVoteBox
-            %div.billButton VIEW BILL
-                    
-            %div.billTitle
-                =vote.bill_id
-            %div.verticalGrid
-            
-            %div
+    %div.container-fluid
+        %div.key
+            .row
+                %div.col-xs-6.text-right
+                    %div.yes
+                        Yes:
+                    %div.vote-key.Yes.R
+                        R
+                    %div.vote-key.Yes.D
+                        D
+                    %div.vote-key.Yes.I
+                        I
+                %div.col-xs-6
+                    %div.no
+                        No:
+                    %div.vote-key.No.R
+                        R
+                    %div.vote-key.No.D
+                        D
+                    %div.vote-key.No.I
+                        I
     
+%section.recent-bill-votes
+    .row.recent-bill-vote-boxes
+        -@votes.each do |vote|
+            
+            %div.single-bill-vote-box
+            
+                %div.bill-button 
+                    =link_to "VIEW BILL", bill_path(vote.bill_id)
+
+                %div.vertical-grid
+                    %div.yes-votes
+                        %span.yes-dem{style: "width:#{calculate_width(vote, 0, 'dem')}"}
+                            // =calculate_width(vote, 0, "dem")
+                            dem
+                        %span.yes-repub{style: "width:#{calculate_width(vote, 0, 'repub')}"}
+                            repub
+                            // =calculate_width(vote, 0, "repub")
+                        %span.yes-ind{style: "width:#{calculate_width(vote, 0, 'ind')}"}
+                            ind
+                    %div.no-votes
+                        %span.no-dem
+                        
+                        %span.no-repub
+                        
+                        %span.no-ind
+                                    
+                %div.bill-title
+                    =vote.bill_id
+                    // this is not the right way to call this...
+                    //  + " " + Bill.select("title").where(bill_id: vote.bill_id)
+                %div.bill-sponsor
+                    // =Bill.where(bill_id: vote.bill_id).govt_official
+                    // -if @bill != nil && @bill.govt_official != nil
+                    //     %div{class: renderPartyColor(@bill.govt_official.party)}
+                    //     =@bill.govt_official.first_name + " " + @bill.govt_official.last_name
+                    // -else
+                    //     Not Available

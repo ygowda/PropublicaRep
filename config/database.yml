@@ -11,14 +11,14 @@ default: &default
   
 development:
   <<: *default
-  database: your_app_name_development
+  database: goverment_data_development
 
 test:
   <<: *default
-  database: your_app_name_test
+  database: goverment_data_test
 
 production:
   <<: *default
-  database: your_app_name_production
+  database: goverment_data_production
   username: your_app_name
   password: <%= ENV['YOUR_APP_NAME_DATABASE_PASSWORD'] %>

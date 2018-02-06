@@ -8,10 +8,26 @@ $orange: #e5be3d;
 $fade: 000070;
 
 
-.title{
+.header{
     text-align: center;
     font-weight: bold;
-    font-family: "Times New Roman"
+    font-family: "Times New Roman";
+    border-bottom: 0.5px solid #B9CED6;
+    margin: 25px 0 35px 0;
+}
+
+// .bill-categories{
+//     max-height: 500px;
+//     overflow: scroll;
+//     column-count: 4;
+// }
+
+.custom-bullets{
+    column-count: 4;
+    list-style-type: none;
+    li::before{
+        content: "- ";
+    }
 }
 
 .indivTitle{
@@ -19,12 +35,13 @@ $fade: 000070;
     font-weight: bold;
 }
 
-.readBill{
-    width: 141px;
+.read-bill{
+    width: 143px;
+    margin-left: 30px;
 }
 
 .key{
-    display: inline-block;
+    display: inline;
 }
 
 .billInfo{
@@ -32,14 +49,20 @@ $fade: 000070;
 }
 
 .billActions{
-    width: 70%;
+    width: 100%;
 }
 
 
-.voteKey{
+.yes, .no{
+    display: inline-block;
+}
+
+.vote-key{
+    width: 18px;
     color: #fff;
     text-align: center;
     font-weight: bold;
+    display: inline-block;
 }
 
 .R.Yes{
@@ -68,9 +91,22 @@ $fade: 000070;
 }
 
 
+.recent-bill-votes{
+    margin: 20px 0 20px 0;    
+}
+
+.row{
+    &.recent-bill-vote-boxes{
+        width: 80%;
+        margin: auto;
+    }
+}
+
 th{
+
     &.date{
         text-align: center;
+        width: 80px;
     }
     &.title{
         text-align: center;
@@ -81,9 +117,44 @@ th{
     &.status{
         text-align: center;
     }
+    &.description{
+        text-align: center;
+    }
 }
 
-.singleBillVoteBox{
-    border: 1px solid #0a1c3a;
-    display: inline;
+.single-bill-vote-box{
+    border: 1px solid #c2d2ed;
+    padding: 0 3px 0 3px;
+    width: 30%;
+    height: 300px;
+    display: inline-block;
+    box-shadow: 0 0 3px;
 }
+
+span{
+    width: 100%;
+    display: inline-block;
+}
+
+.yes-votes{
+    .yes-dem{
+        width: 30%;
+        background-color: $blue;
+    }
+    .yes-repub{
+        width: 30%;
+        background-color: $red;
+    }
+    .yes-ind{
+        width: 30%;
+        background-color: $orange;
+    }
+}    
+
+.show-more{
+    float: right;
+    margin-right: 5px;
+    background-color: #163c7a;
+    text-align: center;
+}
+

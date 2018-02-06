@@ -11,10 +11,11 @@ class ChambersController < ApplicationController
         #should combine this into 1 but can fix this later...
         getMembersInfo("Senate")
         # getMembersInfo("House")
-        @govtOfficials = GovtOfficial.all
-        #.order("voteswithparty DESC")
+        @govtOfficials = GovtOfficial.all.order("votes_with_party DESC")
+        
+        # govtOfficial = GovtOfficial.new
+        # puts "the search value returns... " + (govtOfficial.get_search).first!
 
-        #should you be calling two different forms in rails??
     end
     
     def getMembersInfo(chamber)
@@ -39,7 +40,7 @@ class ChambersController < ApplicationController
         
         @result.each do |member|
             #doesn't seem like this is taking too much time but there has got to be a better way to do this....
-            unless GovtOfficial.exists?(member_id: member['id'], firstName: member['first_name'], lastName: member['last_name'])
+            unless GovtOfficial.exists?(member_id: member['id'], first_name: member['first_name'], last_name: member['last_name'])
                 
                 govtOfficial = GovtOfficial.new
                 
