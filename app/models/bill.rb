@@ -1,8 +1,10 @@
 class Bill < ActiveRecord::Base 
+    self.primary_key = :bill_id
+    
     has_many :actions
     has_many :votes
     belongs_to :govt_official, foreign_key: "sponsor_id"
-
+    
     def initialize_bill(data)
         self.bill_id = data["bill_id"].split('-')[0]
         self.bill_slug = data["bill_slug"] 

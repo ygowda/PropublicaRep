@@ -1,11 +1,11 @@
-%div.container-fluid
+%div.container-fluid#bill
     %h1.indivTitle="#{@bill.bill_id}: #{@bill.title}"
     %div
         %section.billInfo.col-md-2
         
             %div.container-fluid
                 =button_to "Read the bill", @bill.congressdotgov_url, class: 'read-bill btn btn-primary', form: {target: '_blank'}
-                %table
+                %table.bill-info
                     %th.description About this bill
                     %tr
                         %td

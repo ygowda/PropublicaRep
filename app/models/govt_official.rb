@@ -4,10 +4,23 @@ class GovtOfficial < ActiveRecord::Base
     has_many :bills, foreign_key: "sponsor_id"
     
     include PgSearch
-    multisearchable :against => [:first_name, :last_name]
+    # multisearchable :against => [:first_name, :last_name]
+      pg_search_scope :custom_search,
+    :against => [
+      :first_name,
+      :last_name
+    ],
+    :using => {
+      :tsearch => {:prefix => true}
+    }
     
     self.primary_key = :member_id
     enum chamber: [:house, :senate]
+    
+    def rebuild_pg_search_documents
+        # puts "inside here...."
+        find_each { |record| record.update_pg_search_document }
+    end
     
     def add_chamber(chamber_name)
         if chamber_name == "House"
@@ -41,6 +54,6 @@ class GovtOfficial < ActiveRecord::Base
     end
     
     def get_search
-        return PgSearch.multisearch("Kirsten")
+        return PgSearch.multisearch("Kristen")
     end
 end

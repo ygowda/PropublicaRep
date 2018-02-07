@@ -1,37 +1,37 @@
 // =render 'layouts/navbar'
-
-%div.search
-    %form
-        %input.searchbox{:type => "text", :placeholder => "Search for a member..."}
-        %input{:type => "submit", class:"btn btn-submit"}
+%div#chamber
+    %div.search
+        %form
+            %input.searchbox{:type => "text", :placeholder => "Search for a member..."}
+            %input{:type => "submit", class:"btn btn-submit"}
+            
+    %div.mainHeader 
+    
+        %h1 Current Senators 
+        %h4 Senators from the 115th Congress
+    
+    %table
+        %tr.tableHeader
+             
+            %th.image
+            %th.name Name
+            %th.nextElection Next Election 
+            %th.votes Votes with Party(%)
+                    
         
-%div.mainHeader 
-
-    %h1 Current Senators 
-    %h4 Senators from the 115th Congress
-
-%table
-    %tr.tableHeader
-         
-        %th.image
-        %th.name Name
-        %th.nextElection Next Election 
-        %th.votes Votes with Party(%)
-                
-    
-    -@govtOfficials.each do |member|
-                
-        %tr
-            %td
-                %div.image
-                    %img(src="#{member.image_string}")
-    
-            %td
-                %div.memberInfo
-                    %div{class: renderPartyColor(member.party)}
-                    =link_to "#{member.first_name} #{member.last_name}", govt_official_path(member.id)
-                    %br
-                    .description
-                        ="#{member.party} - #{member.state}"
-            %td=member.next_election
-            %td=member.votes_with_party
+        -@govtOfficials.each do |member|
+                    
+            %tr
+                %td
+                    %div.image
+                        %img(src="#{member.image_string}")
+        
+                %td
+                    %div.memberInfo
+                        %div{class: renderPartyColor(member.party)}
+                        =link_to "#{member.first_name} #{member.last_name}", govt_official_path(member.id)
+                        %br
+                        .description
+                            ="#{member.party} - #{member.state}"
+                %td=member.next_election
+                %td=member.votes_with_party

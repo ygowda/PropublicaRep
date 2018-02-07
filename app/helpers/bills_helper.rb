@@ -7,13 +7,17 @@ module BillsHelper
             return 0
         end
         
+        total = total.to_f
         if party == "dem"
-            return number_to_percentage(vote.democratic[arg]/total)* 0.95
+            calculate_percentage(vote.democratic[arg], total)
         elsif party == "repub"
-            return number_to_percentage(vote.republican[arg]/total) * 0.95
+            calculate_percentage(vote.republican[arg], total) 
         elsif party == "ind"
-            return number_to_percentage(vote.independent[arg]/total) * 0.95
+            calculate_percentage(vote.independent[arg], total) 
         end
-        
+    end
+    
+    def calculate_percentage(votes, total)
+        number_to_percentage(votes/total * 95)
     end
 end

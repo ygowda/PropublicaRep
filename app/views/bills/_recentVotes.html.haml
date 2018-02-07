@@ -23,8 +23,8 @@
                     %div.vote-key.No.I
                         I
     
-%section.recent-bill-votes
-    .row.recent-bill-vote-boxes
+%section.recent-bill-vote
+    %div.recent-bill-vote-boxes
         -@votes.each do |vote|
             
             %div.single-bill-vote-box
@@ -34,29 +34,29 @@
 
                 %div.vertical-grid
                     %div.yes-votes
-                        %span.yes-dem{style: "width:#{calculate_width(vote, 0, 'dem')}"}
-                            // =calculate_width(vote, 0, "dem")
-                            dem
-                        %span.yes-repub{style: "width:#{calculate_width(vote, 0, 'repub')}"}
-                            repub
-                            // =calculate_width(vote, 0, "repub")
-                        %span.yes-ind{style: "width:#{calculate_width(vote, 0, 'ind')}"}
-                            ind
+                        %div.yes-dem{style: "width:#{calculate_width(vote, 0, 'dem')};"}
+                        %div.yes-repub{style: "width:#{calculate_width(vote, 0, 'repub')}"}
+                        %div.yes-ind{style: "width:#{calculate_width(vote, 0, 'ind')}"}
                     %div.no-votes
-                        %span.no-dem
-                        
-                        %span.no-repub
-                        
-                        %span.no-ind
-                                    
+                        %div.no-dem{style: "width:#{calculate_width(vote, 1, 'dem')}"}
+                        %div.no-repub{style: "width:#{calculate_width(vote, 1, 'repub')}"}
+                        %div.no-ind{style: "width:#{calculate_width(vote, 1, 'ind')}"}
                 %div.bill-title
-                    =vote.bill_id
-                    // this is not the right way to call this...
-                    //  + " " + Bill.select("title").where(bill_id: vote.bill_id)
+                    ="#{vote.bill_id}: #{vote.bill.title}"
+
+                %br
+                %div.result
+                    ="Status: #{vote.result}"
+                    
+                %br
+                %div.date
+                    ="Date: #{vote.date.strftime("%b. %d").upcase}"
+                    
+                %br
                 %div.bill-sponsor
-                    // =Bill.where(bill_id: vote.bill_id).govt_official
-                    // -if @bill != nil && @bill.govt_official != nil
-                    //     %div{class: renderPartyColor(@bill.govt_official.party)}
-                    //     =@bill.govt_official.first_name + " " + @bill.govt_official.last_name
-                    // -else
-                    //     Not Available
+                    Sponsor: 
+                    -if vote.bill.sponsor_id != nil || vote.bill.sponsor_id != ""
+                        %div{class: renderPartyColor(vote.bill.sponsor_party)}
+                        ="#{vote.bill.govt_official.first_name} #{vote.bill.govt_official.last_name}"
+                    -else
+                        Not Available

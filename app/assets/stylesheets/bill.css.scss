@@ -6,155 +6,187 @@ $red: #c44231;
 $blue: #2c59c1;
 $orange: #e5be3d;
 $fade: 000070;
+$bar-height: 50%;
+$bar-section-height: 50%;
+$bar-display: inline-block;
 
+#bill{
 
-.header{
-    text-align: center;
-    font-weight: bold;
-    font-family: "Times New Roman";
-    border-bottom: 0.5px solid #B9CED6;
-    margin: 25px 0 35px 0;
-}
-
-// .bill-categories{
-//     max-height: 500px;
-//     overflow: scroll;
-//     column-count: 4;
-// }
-
-.custom-bullets{
-    column-count: 4;
-    list-style-type: none;
-    li::before{
-        content: "- ";
+    .header{
+        text-align: center;
+        font-weight: bold;
+        font-family: "Times New Roman";
+        border-bottom: 0.5px solid #B9CED6;
+        margin: 25px 0 35px 0;
     }
-}
-
-.indivTitle{
-    text-align: left;
-    font-weight: bold;
-}
-
-.read-bill{
-    width: 143px;
-    margin-left: 30px;
-}
-
-.key{
-    display: inline;
-}
-
-.billInfo{
-    width: 30%;
-}
-
-.billActions{
-    width: 100%;
-}
-
-
-.yes, .no{
-    display: inline-block;
-}
-
-.vote-key{
-    width: 18px;
-    color: #fff;
-    text-align: center;
-    font-weight: bold;
-    display: inline-block;
-}
-
-.R.Yes{
-   background: $red; 
-}
-
-.D.Yes{
-    background: $blue;
-}
-
-.I.Yes{
-    background: $orange;    
-}
-
-
-.R.No{
-   background: $red + $fade; 
-}
-
-.D.No{
-    background: $blue + $fade;
-}
-
-.I.No{
-    background: $orange + $fade + 000030;    
-}
-
-
-.recent-bill-votes{
-    margin: 20px 0 20px 0;    
-}
-
-.row{
-    &.recent-bill-vote-boxes{
+    
+    .custom-bullets{
+        column-count: 4;
+        list-style-type: none;
+        li::before{
+            content: "- ";
+        }
+    }
+    
+    .indivTitle{
+        text-align: left;
+        font-weight: bold;
+        margin-left: 28px;
+    }
+    
+    .read-bill{
+        width: 100%;
+    }
+    
+    .key{
+        display: inline;
+    }
+    
+    .billInfo{
+        width: 30%;
+    }
+    
+    .billActions{
+        width: 100%;
+    }
+    
+    
+    .yes, .no{
+        display: inline-block;
+    }
+    
+    .vote-key{
+        width: 18px;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        display: inline-block;
+    }
+    
+    .R.Yes{
+       background: $red; 
+    }
+    
+    .D.Yes{
+        background: $blue;
+    }
+    
+    .I.Yes{
+        background: $orange;    
+    }
+    
+    
+    .R.No{
+       background: $red + $fade; 
+    }
+    
+    .D.No{
+        background: $blue + $fade;
+    }
+    
+    .I.No{
+        background: $orange + $fade + 000030;    
+    }
+    
+    
+    .recent-bill-votes{
+        margin: 20px 0 20px 0;    
+    }
+    
+    
+    .recent-bill-vote-boxes{
         width: 80%;
-        margin: auto;
+        margin: 15px 0 0 40px;
     }
-}
-
-th{
-
-    &.date{
+    
+    
+    .bill-info{
+        width: 100%;
+    }
+    
+    th{
+    
+        &.date{
+            text-align: center;
+            width: 80px;
+        }
+        &.title{
+            text-align: center;
+        }
+        &.sponsor{
+            text-align: center;
+        }
+        &.status{
+            text-align: center;
+        }
+        &.description{
+            text-align: center;
+        }
+    }
+    
+    .single-bill-vote-box{
+        border: 1px solid #c2d2ed;
+        padding: 0 3px 0 3px;
+        width: 35%;
+        height: 400px;
+        display: inline-block;
+        box-shadow: 0 0 3px;
+        margin-right: 30px;
+    }
+    
+    span{
+        width: 100%;
+        display: inline-block;
+    }
+    
+    .yes-votes{
+        
+        height: 40px;
+        
+        .yes-dem{
+            background-color: $blue;
+            display: $bar-display;
+            height: $bar-section-height;
+        }
+        .yes-repub{
+            background-color: $red;
+            display: $bar-display;
+            height: $bar-section-height;
+        }
+        .yes-ind{
+            background-color: $orange;
+            display: $bar-display;
+            height: $bar-section-height;
+        }
+    }    
+    
+    .no-votes{
+        
+        height: 40px;
+        
+        .no-dem{
+            background-color: $blue + $fade;
+            display: $bar-display;
+            height: $bar-section-height;
+        }
+        .no-repub{
+            background-color: $red + $fade;
+            display: $bar-display;
+            height: $bar-section-height;
+        }
+        .no-ind{
+            background-color: $orange + 000030;
+            display: $bar-display;
+            height: $bar-section-height;
+        }
+    } 
+    
+    
+    .show-more{
+        float: right;
+        margin-right: 5px;
+        background-color: #163c7a;
         text-align: center;
-        width: 80px;
     }
-    &.title{
-        text-align: center;
-    }
-    &.sponsor{
-        text-align: center;
-    }
-    &.status{
-        text-align: center;
-    }
-    &.description{
-        text-align: center;
-    }
+
 }
-
-.single-bill-vote-box{
-    border: 1px solid #c2d2ed;
-    padding: 0 3px 0 3px;
-    width: 30%;
-    height: 300px;
-    display: inline-block;
-    box-shadow: 0 0 3px;
-}
-
-span{
-    width: 100%;
-    display: inline-block;
-}
-
-.yes-votes{
-    .yes-dem{
-        width: 30%;
-        background-color: $blue;
-    }
-    .yes-repub{
-        width: 30%;
-        background-color: $red;
-    }
-    .yes-ind{
-        width: 30%;
-        background-color: $orange;
-    }
-}    
-
-.show-more{
-    float: right;
-    margin-right: 5px;
-    background-color: #163c7a;
-    text-align: center;
-}
-

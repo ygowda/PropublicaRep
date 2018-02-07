@@ -14,7 +14,8 @@ class ChambersController < ApplicationController
         @govtOfficials = GovtOfficial.all.order("votes_with_party DESC")
         
         # govtOfficial = GovtOfficial.new
-        # puts "the search value returns... " + (govtOfficial.get_search).first!
+        # govtOfficial.rebuild_pg_search_documents
+        puts "the search value returns... " + GovtOfficial.custom_search("Jo").first.last_name
 
     end
     

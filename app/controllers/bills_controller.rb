@@ -13,9 +13,8 @@ class BillsController < ApplicationController
         #models to be accessed in the frontend 
         @bills = Bill.all.order("latest_major_action_date DESC")
         @votes = Vote.where(question: "On Passage").limit(3).order("date DESC")
-        # @vote_details = Hash.new
+
         v = Votes.new
-        
         @votes.each do |vote|
            results = v.getVoteByRollCall(vote['roll_call'], vote)
         end
